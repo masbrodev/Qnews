@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+Route::get('/home',  'HomeController@index');
+Route::get('/',      'MainController@index');
+Route::get('/berita/{path}',  'MainController@showBerita');
+Route::get('/kategori/{cat}', 'MainController@kategoriBerita');
+Route::post('/cari',		  'MainController@cari');
