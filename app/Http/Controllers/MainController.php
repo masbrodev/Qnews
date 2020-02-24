@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Visitor;
+use App\Berita;
+use App\Comment;
+use App\Like;
+use DateTime;
+use DB;
+date_default_timezone_set("Asia/Jakarta");
 
 class MainController extends Controller
 {
@@ -62,4 +69,30 @@ class MainController extends Controller
         $beritas = Berita::where('judul', 'LIKE', $search)->limit(10)->get();
         return view('cari', ['beritas' => $beritas, 'beritaBaru' => $this->beritaBaru, 'beritaPopuler' => $this->beritaPopuler, 'msg' => 'Menampilkan hasil pencarian untuk : '.$request->search, 'controller' => $this]);
     }
+
+        /* ------------ Without Routing ------------- */
+
+    public function kategori($cat){
+		$kategoris = explode(", ", $cat);
+		foreach($kategoris as $kategori){
+			$kategoriA = $kategori;
+			$kategori = ($kategori != $kategoris[0]) ? ", ".$kategori : $kategori; 
+			echo '<a class="cat-news" href="/kategori/'.$kategoriA.'">'.$kategori.'</a>';
+		}
+	}
+
+    public function tanggal($tgl){
+        $date  = new DateTime($tgl);
+        $month = array('Januari', 'Februari', 'Maret' , 'April' , 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y'); 
+        echo '<div class="time-news">'.$time.'</div>';
+    }
+
+    public function fullTime($tgl){
+        $date  = new DateTime($tgl);
+        $month = array('Januari', 'Februari', 'Maret' , 'April' , 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y')." ".$date->format("H:i:s"); 
+        echo '<div class="time-news">'.$time.'</div>';
+    }
+
 }
