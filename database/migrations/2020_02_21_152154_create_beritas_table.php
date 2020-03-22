@@ -20,6 +20,7 @@ class CreateBeritasTable extends Migration
             $table->string('foto');
             $table->string('isi');
             $table->string('path')->unique();
+            $table->integer('dilihat');
             $table->timestamps();
         });
     }
