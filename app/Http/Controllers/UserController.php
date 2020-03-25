@@ -24,4 +24,18 @@ class UserController extends Controller
    
   		return $datas;
     }
+
+    public function addComment(Request $request){
+    	$comment           = new Comment;
+    	$comment->user_id  = Auth::user()->id;
+    	$comment->post_id  = $request->id;
+    	$comment->isi      = $request->komentar;
+    	$comment->save();
+
+    	$tgl   = Comment::where('user_id', Auth::User()->id)->orderBy('id', 'DESC')->limit(1)->first(); 
+    	$date  = new DateTime($tgl->created_at);
+        $month = array('Januari', 'Februari', 'Maret' , 'April' , 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y')." ".$date->format("H:i:s"); 
+    	return $time;
+    }
 }
