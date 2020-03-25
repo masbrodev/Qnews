@@ -51,4 +51,15 @@ class UserController extends Controller
         $comment = Comment::where('id', $id)->first();
         return view('user.editComment', ['comment' => $comment]);
     }
+
+    public function updateComment(Request $request, $id){
+        $comment = Comment::find($id);
+        $comment->isi = $request->komentar;
+        $comment->save();
+
+        if(Auth::user()->email == "admin@portal.com") {
+            return redirect('/komentar')->with('msg', 'Berhasil menyunting Komentar!');
+        }
+        return redirect('/comment')->with('msg', 'Berhasil menyunting Komentar!');
+    }
 }
