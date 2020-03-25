@@ -46,4 +46,9 @@ class UserController extends Controller
                                         ->orderBy('comments.id', 'DESC')->get(['comments.*', 'beritas.judul', 'beritas.path']);
         return view('user.comment', ['comments' => $comments, 'controller' => $this]);
     }
+
+    public function editComment($id){
+        $comment = Comment::where('id', $id)->first();
+        return view('user.editComment', ['comment' => $comment]);
+    }
 }
