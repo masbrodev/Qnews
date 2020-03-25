@@ -38,4 +38,12 @@ class UserController extends Controller
         $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y')." ".$date->format("H:i:s"); 
     	return $time;
     }
+
+    public function comment(){
+        $comments = Comment::where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        $comments = DB::table('comments')->where('comments.user_id', Auth::user()->id)
+                                        ->join('beritas', 'beritas.id', '=', 'comments.post_id')
+                                        ->orderBy('comments.id', 'DESC')->get(['comments.*', 'beritas.judul', 'beritas.path']);
+        return view('user.comment', ['comments' => $comments, 'controller' => $this]);
+    }
 }
