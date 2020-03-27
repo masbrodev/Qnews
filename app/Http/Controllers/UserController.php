@@ -146,4 +146,11 @@ class UserController extends Controller
         $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y'); 
         echo '<div class="time-news">'.$time.'</div>';
     }
+
+    public function fullTime($tgl){
+        $date  = new DateTime($tgl);
+        $month = array('Januari', 'Februari', 'Maret' , 'April' , 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $time  = $date->format('d')." ".$month[$date->format('m') -1]." ".$date->format('Y')." ".$date->format("H:i:s"); 
+        echo '<div class="time-news">'.$time.'</div>';
+    }
 }
