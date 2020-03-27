@@ -138,4 +138,12 @@ class UserController extends Controller
         return view('user.notif', ['notifs' => $notifs, 'controller' => $this]);
     }
 
+    /* ------------ Without Routing ------------- */
+
+    public function tanggal($tgl){
+        $date  = new DateTime($tgl);
+        $month = array('Januari', 'Februari', 'Maret' , 'April' , 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+        $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y'); 
+        echo '<div class="time-news">'.$time.'</div>';
+    }
 }
