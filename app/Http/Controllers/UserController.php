@@ -120,4 +120,22 @@ class UserController extends Controller
         $notif->parentuser_id = $request->parentuser_id;
         $notif->save();        
     }
+
+    public function unlike(Request $request){
+        $like = Like::where('parent_id', $request->parent_id)->where('user_id', Auth::user()->id)->first();
+        $notif = Notification::where('parent_id', $request->parent_id)->where('user_id', Auth::user()->id)->first();
+        $like->delete();
+        $notif->delete();    
+    }
+
+    public function notification(){
+        $notifs = DB::table('notifications')->where('notifications.parentuser_id', Auth::user()->id)
+                                       ->where('notifications.user_id', '!=', Auth::user()->id)
+                                       ->join('beritas', 'beritas.id', '=', 'notifications.post_id')
+                                       ->join('users', 'users.id', '=', 'notifications.user_id')
+                                       ->orderBy('notifications.id', 'DESC')->get(['notifications.*', 'beritas.judul', 'beritas.path', 'users.name']);
+    
+        return view('user.notif', ['notifs' => $notifs, 'controller' => $this]);
+    }
+
 }
