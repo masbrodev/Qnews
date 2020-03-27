@@ -71,4 +71,16 @@ class UserController extends Controller
         }
         return redirect('/comment')->with('msg', 'Berhasil Menghapus Komentar!');
     }
+
+    public function editBiodata(Request $request){
+        $user = User::find(Auth::user()->id);
+        $user->name      = $request->nama;
+        $user->email     = $request->email;
+        $user->alamat    = $request->alamat;
+        $user->tgl_lahir = $request->tgl;
+        $user->nohp      = $request->nohp;
+        $user->save();
+
+        return redirect('/home')->with('msg', 'Berhasil mengubah Biodata.');   
+    }
 }
