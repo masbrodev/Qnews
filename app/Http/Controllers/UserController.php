@@ -104,4 +104,20 @@ class UserController extends Controller
         $time  = $date->format('d')." ".$month[$date->format('m') - 1]." ".$date->format('Y')." ".$date->format("H:i:s"); 
         return $time;
     }
+
+    public function like(Request $request){
+        $like            = new Like;
+        $like->user_id   = Auth::user()->id;
+        $like->post_id   = $request->post_id;
+        $like->parent_id = $request->parent_id;
+        $like->save();
+
+        $notif            = new Notification;
+        $notif->user_id   = Auth::user()->id;
+        $notif->post_id   = $request->post_id;
+        $notif->parent_id = $request->parent_id;
+        $notif->type      = 1;
+        $notif->parentuser_id = $request->parentuser_id;
+        $notif->save();        
+    }
 }
