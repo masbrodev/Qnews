@@ -62,4 +62,13 @@ class UserController extends Controller
         }
         return redirect('/comment')->with('msg', 'Berhasil menyunting Komentar!');
     }
+
+    public function deleteComment($id){
+        $comment = Comment::find($id);
+        $comment->delete();
+        if(Auth::user()->email == "admin@portal.com") {
+            return redirect('/komentar')->with('msg', 'Berhasil Menghapus Komentar!');
+        }
+        return redirect('/comment')->with('msg', 'Berhasil Menghapus Komentar!');
+    }
 }
