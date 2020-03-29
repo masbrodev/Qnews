@@ -11,6 +11,21 @@
 	<script src="/js/jquery3.min.js"></script>
 	<script src="/js/script.js"></script>
 </head>
+<body>
+
+	@if (!Auth::guest())
+	@include('layouts.header')
+	<main class="row admin">
+		<div class="col-12">
+            @if(Auth::user()->email == "admin@portal.com") 
+            @include('layouts.adminT')
+            @else 
+            @include('layouts.userT')
+			@endif
+
+			@yield('content')
+		</div>
+	</main>
 
 </body>
 </html>
