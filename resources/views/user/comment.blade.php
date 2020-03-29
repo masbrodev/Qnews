@@ -14,6 +14,8 @@
 									<?php $controller->fullTime($comment->created_at); ?>
 									<div class="col-9">Pada : <a href="/berita/{{ $comment->path }}">{{ $comment->judul }}</a></div>
 								</div>
+								<div class="col-12 pad1 ptop">
+									<a href="/editComment/{{ $comment->id }}" class="col-1 col-xs-4 btn-edit">Edit</a>
 						</div>
 					@endforeach
 				</div>
