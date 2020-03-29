@@ -16,9 +16,13 @@
 								</div>
 								<div class="col-12 pad1 ptop">
 									<a href="/editComment/{{ $comment->id }}" class="col-1 col-xs-4 btn-edit">Edit</a>
+									<a href="/deleteComment/{{ $comment->id }}" class="col-1 col-xs-4 btn-delete" onclick="return confirm('Yakin ingin menghapus comment ini?')">Hapus</a>
+								</div>
+							</div>
 						</div>
 					@endforeach
 				</div>
 		</div>
 	</div>
+
 @endsection
