@@ -30,5 +30,22 @@
 	<footer class="row">
 		<div class="col-12 copyright">Copyright &copy; 2016</div>
 	</footer>
+
+	 <script>
+	  tinymce.init({
+	    selector: 'textarea#addPost',
+	    plugins: [
+	      'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+	      'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+	      'save table contextmenu directionality emoticons template paste textcolor'
+	    ],
+	    height : '350'
+	  });
+  	</script>
+      @else 
+      @yield('content')
+  	@endif
+
+
 </body>
 </html>
