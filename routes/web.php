@@ -17,3 +17,7 @@ Route::get('/',      'MainController@index');
 Route::get('/berita/{path}',  'MainController@showBerita');
 Route::get('/kategori/{cat}', 'MainController@kategoriBerita');
 Route::post('/cari',		  'MainController@cari');
+
+/* -------------- Admin -----------*/
+
+Route::get('/tambah',         'AdminController@tambah');
