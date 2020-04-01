@@ -21,3 +21,4 @@ Route::post('/cari',		  'MainController@cari');
 /* -------------- Admin -----------*/
 
 Route::get('/tambah',         'AdminController@tambah');
+Route::get('/hapusUser/{id}', 'AdminController@hapusUser');
