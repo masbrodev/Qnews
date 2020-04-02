@@ -22,4 +22,5 @@ Route::post('/cari',		  'MainController@cari');
 
 Route::get('/tambah',         'AdminController@tambah');
 Route::post('/addPost',       'AdminController@addPost');
+Route::post('/editPost/{id}', 'AdminController@editPost');
 Route::get('/hapusUser/{id}', 'AdminController@hapusUser');
