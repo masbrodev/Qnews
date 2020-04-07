@@ -1,1 +1,1 @@
-# Qnews - Laravel
+# Qnews - Framework Laravel
